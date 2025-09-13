@@ -13,5 +13,5 @@ func main() {
 		playAgain = game.UtilTool.GetYesOrNo("Would you like to play again (y/n)?")
 	}
 
-	fmt.Println(" Goodbye")
+	game.UtilTool.Dialogue("Goodbye", fmt.Println)
 }

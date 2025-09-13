@@ -1,7 +1,5 @@
-github.com/adamsat2/tgutils v1.1.1 h1:fFcW4ch6Dyu2Yo04w5i9Mk0Ou+QNZfLJlno6+NVvIQU=
-github.com/adamsat2/tgutils v1.1.1/go.mod h1:+HO33+J0WlzcjEoFd9NaQ0T0Rt84GbvoVncXVnZCo+c=
-github.com/adamsat2/tgutils v1.1.2 h1:ErD7mQx9oS22LmK1AMLGSQSid8grAwBPY8nXJJFLIO8=
-github.com/adamsat2/tgutils v1.1.2/go.mod h1:+HO33+J0WlzcjEoFd9NaQ0T0Rt84GbvoVncXVnZCo+c=
+github.com/adamsat2/tgutils v1.2.0 h1:NZbaDcUWcJY4sO4phEEuhiWrJp9YAONeia2Yo3VIu44=
+github.com/adamsat2/tgutils v1.2.0/go.mod h1:+HO33+J0WlzcjEoFd9NaQ0T0Rt84GbvoVncXVnZCo+c=
 github.com/fatih/color v1.18.0 h1:S8gINlzdQ840/4pfAwic/ZE0djQEH3wM94VfqLTZcOM=
 github.com/fatih/color v1.18.0/go.mod h1:4FelSpRwEGDpQ12mAdzqdOukCy4u8WUtOY6lkT/6HfU=
 github.com/mattn/go-colorable v0.1.13 h1:fFA4WZxdEF4tXPZVKMLwD8oUnCTTo08duU7wxecdEvA=

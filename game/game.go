@@ -7,9 +7,14 @@ import (
 	"github.com/fatih/color"
 )
 
+var red = color.New(color.FgRed).SprintfFunc()
+var cyan = color.New(color.FgCyan).SprintfFunc()
+var green = color.New(color.FgGreen).SprintfFunc()
+var yellow = color.New(color.FgYellow).SprintfFunc()
+var magenta = color.New(color.FgMagenta).SprintfFunc()
+
 var UtilTool = tgutils.Utils{
 	SpaceBeforeText: true,
-	ColoredText:     true,
 }
 
 const EMPTYCELL = " "
@@ -30,13 +35,14 @@ func updateSymbolInBoard(gameSlice []string, symbol string) {
 	for !goodAnswer {
 		pos := UtilTool.GetNumber(question) - 1
 		if pos < 0 || pos > 8 {
-			color.Red(" The position you've selected is out of bounds!")
+			UtilTool.Dialogue(red("The position you've selected is out of bounds!"), fmt.Println)
 		} else if gameSlice[pos] != EMPTYCELL {
-			color.Red(" The position you've selected already has a symbol in it!")
+			UtilTool.Dialogue(red("The position you've selected already has a symbol in it!"), fmt.Println)
 		} else {
 			gameSlice[pos] = symbol
 			goodAnswer = true
-			color.Cyan(" %s placed at position %d", symbol, pos+1)
+
+			UtilTool.Dialogue(cyan("%s placed at position %d", symbol, pos+1), fmt.Println)
 		}
 	}
 
@@ -47,25 +53,27 @@ func checkWinner(gameSlice []string) bool {
 	for i := 0; i <= 6; i += 3 {
 		if (gameSlice[i] != EMPTYCELL) && (gameSlice[i] == gameSlice[i+1]) && (gameSlice[i] == gameSlice[i+2]) {
 			symbol = gameSlice[i]
-			color.Green(" %s won by row combination!", symbol)
+			UtilTool.Dialogue(green("%s won by row combination!", symbol), fmt.Println)
 			return true
 		}
 	}
-	for i := 0; i < 3; i++ {
+	for i := range 3 {
 		if (gameSlice[i] != EMPTYCELL) && (gameSlice[i] == gameSlice[i+3]) && (gameSlice[i] == gameSlice[i+6]) {
 			symbol = gameSlice[i]
-			color.Green(" %s won by column combination!", symbol)
+			UtilTool.Dialogue(green("%s won by column combination!", symbol), fmt.Println)
 			return true
 		}
 	}
+	// diagonal of type \
 	if (gameSlice[0] != EMPTYCELL) && (gameSlice[0] == gameSlice[4]) && (gameSlice[0] == gameSlice[8]) {
 		symbol = gameSlice[0]
-		color.Green(" %s won by diagonal combination!", symbol)
+		UtilTool.Dialogue(green("%s won by diagonal combination!", symbol), fmt.Println)
 		return true
 	}
+	// diagonal of type /
 	if (gameSlice[2] != EMPTYCELL) && (gameSlice[2] == gameSlice[4]) && (gameSlice[2] == gameSlice[6]) {
 		symbol = gameSlice[2]
-		color.Green(" %s won by diagonal combination!", symbol)
+		UtilTool.Dialogue(green("%s won by diagonal combination!", symbol), fmt.Println)
 		return true
 	}
 	return false
@@ -77,7 +85,7 @@ func checkDraw(gameSlice []string) bool {
 			return false
 		}
 	}
-	color.Yellow(" The board is full and there is no winner. It's a draw!")
+	UtilTool.Dialogue(yellow("The board is full and there is no winner. It's a draw!"), fmt.Println)
 	return true
 }
 
@@ -89,7 +97,7 @@ func Play() {
 	UtilTool.ClearScreen() // for new games
 
 	for !checkDraw(gameSlice) && !checkWinner(gameSlice) {
-		color.Magenta(" Welcome to tictactoe!")
+		UtilTool.Dialogue(magenta("Welcome to tictactoe"), fmt.Println)
 		if turn%2 == 0 {
 			updateSymbolInBoard(gameSlice, SYMBOLTWO)
 		} else {
@@ -106,7 +114,7 @@ func Play() {
 
 func displayGameSlice(gameSlice []string) {
 	for i := 0; i < len(gameSlice); i++ {
-		print(" ")
+		fmt.Print(" ")
 		fmt.Print("[", gameSlice[i], "]")
 		if (i+1)%3 == 0 {
 			fmt.Println()
